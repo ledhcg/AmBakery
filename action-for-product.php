@@ -332,6 +332,8 @@ if (isset($_POST["action"])) {
                 "product_unit_price" => "ERROR",
                 "product_sale_price" => "ERROR",
                 "product_status" => "ERROR",
+                "product_stock" => "ERROR",
+                "updated_at" => "ERROR",
                 "edit" => "ERROR",
                 'modal_edit' => "",
                 'modal_delete' => "",

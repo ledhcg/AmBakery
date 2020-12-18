@@ -7,7 +7,7 @@ $modal_delete = '';
 $sql_table_body = "SELECT * FROM tbl_order ORDER BY id DESC";
 $query_table_body = mysqli_query($connect, $sql_table_body);
 
-$sql_option_product = "SELECT * FROM tbl_product ORDER BY id";
+$sql_option_product = "SELECT * FROM tbl_product WHERE product_status='1' ORDER BY id";
 $query_option_product = mysqli_query($connect, $sql_option_product);
 
 $sql_option_customer = "SELECT * FROM tbl_customer ORDER BY id";

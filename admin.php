@@ -28,7 +28,13 @@ if ($rows > 0) {
                 break;
             case "all_dealers":$check_selected = "ALL DEALERS";
                 break;
+            case "all_partners":$check_selected = "ALL PARTNERS";
+                break;
             case "production_statistics":$check_selected = "PRODUCTION STATISTICS";
+                break;
+            case "material_statistics":$check_selected = "MATERIAL STATISTICS";
+                break;
+            case "all_materials":$check_selected = "MATERIAL STATISTICS";
                 break;
             case "about":$check_selected = "ABOUT";
                 break;
@@ -196,17 +202,35 @@ if ($rows > 0) {
                     </ul>
                 </li>
 
-                <li class="sidebar-item has-sub">
+                <li class="sidebar-item has-sub <?php if ($check_selected == "ALL PARTNERS") {echo "active";}?>">
+                    <a href="#" class='sidebar-link'>
+                        <i data-feather="database" width="20"></i>
+                        <span>Partner</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li>
+                            <a href="admin.php?page_layout=all_partners&name_modal=add_partner">Add a new partner</a>
+                        </li>
+                        <li>
+                            <a href="admin.php?page_layout=all_partners">All Partners</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item has-sub <?php if ($check_selected == "MATERIAL STATISTICS") {echo "active";}?> ">
                     <a href="#" class='sidebar-link'>
                         <i data-feather="database" width="20"></i>
                         <span>Materials</span>
                     </a>
                     <ul class="submenu ">
                         <li>
-                            <a href="admin.php?page_layout=all_dealers">Import Materials</a>
+                            <a href="admin.php?page_layout=material_statistics&name_modal=add_material_inventory">Import Materials</a>
                         </li>
                         <li>
-                            <a href="admin.php?page_layout=all_dealers">Warehouse Materials</a>
+                            <a href="admin.php?page_layout=material_statistics">Material Statistics</a>
+                        </li>
+                        <li>
+                            <a href="admin.php?page_layout=all_materials">All Materials</a>
                         </li>
                     </ul>
 
@@ -309,6 +333,12 @@ if ($rows > 0) {
             case "production_statistics":include_once './production-statistics.php';
                 break;
             case "all_products_in_production":include_once './all-products-in-production.php';
+                break;
+            case "all_materials":include_once './all-materials.php';
+                break;
+            case "all_partners":include_once './all-partners.php';
+                break;
+            case "material_statistics":include_once './material-statistics.php';
                 break;
             default:include_once './dashboard.php';
         }

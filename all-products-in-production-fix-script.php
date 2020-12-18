@@ -227,17 +227,17 @@ while ($row_brand_add = mysqli_fetch_array($query_brand_add)) {
 <!--------------- End Modal --------------->
 <script>
 
-        let element_add_1 = document.querySelector('.js-choices-add-category');
-        let choices_add_1 = new Choices(element_add_1);
+        element_add_1 = document.querySelector('.js-choices-add-category');
+        choices_add_1 = new Choices(element_add_1);
 
-        let element_add_2 = document.querySelector('.js-choices-add-brand');
-        let choices_add_2 = new Choices(element_add_2);
+        element_add_2 = document.querySelector('.js-choices-add-brand');
+        choices_add_2 = new Choices(element_add_2);
 
-        let element_add_3 = document.querySelector('.js-choices-add-status');
-        let choices_add_3 = new Choices(element_add_3);
+        element_add_3 = document.querySelector('.js-choices-add-status');
+        choices_add_3 = new Choices(element_add_3);
 
-        let table2 = document.querySelector('#table2');
-        let dataTable2 = new simpleDatatables.DataTable(table2);
+        table2 = document.querySelector('#table2');
+        dataTable2 = new simpleDatatables.DataTable(table2);
 
 
 

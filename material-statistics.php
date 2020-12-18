@@ -4,11 +4,11 @@ $table_inventories = '';
 $modal_view = '';
 $modal_delete = '';
 
-$sql_table_body = "SELECT * FROM tbl_inventory_production ORDER BY id DESC";
+$sql_table_body = "SELECT * FROM tbl_inventory_material ORDER BY id DESC";
 $query_table_body = mysqli_query($connect, $sql_table_body);
 
-$sql_option_product = "SELECT * FROM tbl_product ORDER BY id";
-$query_option_product = mysqli_query($connect, $sql_option_product);
+$sql_option_material = "SELECT * FROM tbl_material ORDER BY id";
+$query_option_material = mysqli_query($connect, $sql_option_material);
 
 $sql_option_dealer = "SELECT * FROM tbl_dealer ORDER BY id";
 $query_option_dealer = mysqli_query($connect, $sql_option_dealer);
@@ -27,7 +27,7 @@ if (mysqli_num_rows($query_table_body) > 0) {
                 <td><a id="td-' . $row_table_body["inventory_id"] . '">' . $row_table_body["inventory_id"] . '<a></td>
                 <td>' . $row_dealer_table_body["dealer_name"] . '</td>
                 <td>' . $row_table_body["inventory_time"] . '</td>
-                <td>' . $row_table_body["products_updated"] . '</td>
+                <td>' . $row_table_body["materials_updated"] . '</td>
                 <td>' . $row_table_body["quantity_updated"] . '</td>
                 <td>' . $row_table_body["inventory_note"] . '</td>
                 <td>
@@ -44,20 +44,20 @@ if (mysqli_num_rows($query_table_body) > 0) {
         $table_view = '';
 
         $table_view_id = $row_table_body["inventory_id"];
-        $sql_table_view = "SELECT * FROM tbl_inventory_production_detail WHERE inventory_id='$table_view_id'";
+        $sql_table_view = "SELECT * FROM tbl_inventory_material_detail WHERE inventory_id='$table_view_id'";
         $query_table_view = mysqli_query($connect, $sql_table_view);
         $number_row = 1;
         while ($row_table_view = mysqli_fetch_array($query_table_view)) {
 
-            $table_view_product_id = $row_table_view["product_id"];
-            $sql_table_view_product_id = "SELECT * FROM tbl_product WHERE id='$table_view_product_id'";
-            $query_table_view_product_id = mysqli_query($connect, $sql_table_view_product_id);
-            $row_table_view_product_id = mysqli_fetch_array($query_table_view_product_id);
+            $table_view_material_id = $row_table_view["material_id"];
+            $sql_table_view_material_id = "SELECT * FROM tbl_material WHERE id='$table_view_material_id'";
+            $query_table_view_material_id = mysqli_query($connect, $sql_table_view_material_id);
+            $row_table_view_material_id = mysqli_fetch_array($query_table_view_material_id);
 
             $table_view .= ' <tr>
                                 <td>' . $number_row . '</td>
-                                <td>' . $row_table_view_product_id["product_name"] . '</td>
-                                <td>' . $row_table_view["product_stock"] . '</td>
+                                <td>' . $row_table_view_material_id["material_name"] . '</td>
+                                <td>' . $row_table_view["material_stock"] . '</td>
                                 <td>' . $row_table_view["additional_quantity"] . '</td>
                             </tr>';
             $number_row++;
@@ -66,7 +66,7 @@ if (mysqli_num_rows($query_table_body) > 0) {
                             <tr>
                                 <td colspan="2" align="center">
                                     <a type="button" class="btn btn-primary round">
-                                        Products Updated <span class="badge bg-transparent">' . $row_table_body["products_updated"] . '</span>
+                                        Materials Updated <span class="badge bg-transparent">' . $row_table_body["materials_updated"] . '</span>
                                     </a>
                                 </td>
                                 <td colspan="2" align="center">
@@ -100,7 +100,7 @@ if (mysqli_num_rows($query_table_body) > 0) {
                                                             <thead>
                                                                 <tr>
                                                                     <th>#</th>
-                                                                    <th>Product name</th>
+                                                                    <th>Material name</th>
                                                                     <th>Current Quantity</th>
                                                                     <th>Additional Quantity</th>
                                                                 </tr>
@@ -189,13 +189,13 @@ if (mysqli_num_rows($query_table_body) > 0) {
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>ALL PRODUCTION INVENTORIES</h3>
+                <h3>ALL MATERIAL INVENTORIES</h3>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class='breadcrumb-header'>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Admin</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">All production inventories</li>
+                        <li class="breadcrumb-item active" aria-current="page">All material inventories</li>
                     </ol>
                 </nav>
             </div>
@@ -216,7 +216,7 @@ if (mysqli_num_rows($query_table_body) > 0) {
                             <th>Inventory ID</th>
                             <th>Dealer</th>
                             <th>Time</th>
-                            <th>Products Updated</th>
+                            <th>Materials Updated</th>
                             <th>Quantity Updated</th>
                             <th>Note</th>
                             <th>Edit</th>
@@ -257,38 +257,38 @@ echo $modal_delete;
                                                     <div class="card-header">
                                                         <h4 class='card-heading'>ADDITIONAL QUANTITY</h4>
                                                     </div>
-                                                    <form id="form_select_product">
+                                                    <form id="form_select_material">
                                                         <div class="form-group">
                                                             <label for="" class="form-label">LIST PRODUCTS</label>
-                                                            <select class="js-choices3 form-select" id="select_product">
+                                                            <select class="js-choices3 form-select" id="select_material">
 
                             <?php
-$option_product = '<option value="">Choose product ...</option>';
-$input_hidden_product_price = '';
-if (mysqli_num_rows($query_option_product) > 0) {
-    while ($row_option_product = mysqli_fetch_array($query_option_product)) {
-        $option_product .= '
-                                        <option value="' . $row_option_product["id"] . '">' . $row_option_product["product_name"] . '</option>
+$option_material = '<option value="">Choose material ...</option>';
+$input_hidden_material_price = '';
+if (mysqli_num_rows($query_option_material) > 0) {
+    while ($row_option_material = mysqli_fetch_array($query_option_material)) {
+        $option_material .= '
+                                        <option value="' . $row_option_material["id"] . '">' . $row_option_material["material_name"] . '</option>
                                     ';
-        $input_hidden_product_price .= '
-                                        <input type="hidden" id="product_stock' . $row_option_product["id"] . '" value="' . $row_option_product["product_stock"] . '" required>
+        $input_hidden_material_price .= '
+                                        <input type="hidden" id="material_stock' . $row_option_material["id"] . '" value="' . $row_option_material["material_stock"] . '" required>
                                     ';
     }
 }
-echo $option_product;
+echo $option_material;
 ?>
                                                             </select>
                                                         </div>
                             <?php
-echo $input_hidden_product_price;
+echo $input_hidden_material_price;
 ?>
                                                     </form>
                                                     <table class='table table-hover' id="table">
                                                         <thead>
                                                             <tr>
                                                                     <th>#</th>
-                                                                    <th>ID Product</th>
-                                                                    <th>Product name</th>
+                                                                    <th>ID Material</th>
+                                                                    <th>Material name</th>
                                                                     <th>Current Quantity</th>
                                                                     <th>Additional Quantity</th>
                                                                     <th></th>
@@ -367,7 +367,7 @@ echo $option_dealer;
 
 <!--------------- End  Add Modal --------------->
 
-<div id="load_page_all_products">
+<div id="load_page_all_materials">
 </div>
 
 <script>
@@ -376,7 +376,7 @@ echo $option_dealer;
 function show_add_modal()
 {
     if (isset($_GET["name_modal"])) {
-        if ($_GET["name_modal"] == "add_inventory") {
+        if ($_GET["name_modal"] == "add_material_inventory") {
             echo "
                         $(document).ready(function(){
                             $('#add-modal').modal('show');
@@ -406,22 +406,22 @@ show_add_modal();
             $('#inventory_id_input').html(inventory_id_input);
         };
 
-        function load_page_products(){
-            $('#load_page_all_products').load("all-products-in-production.php");
+        function load_page_materials(){
+            $('#load_page_all_materials').load("all-materials-in-material-statistics.php");
         }
 
-        function load_page_products_fix_script(){
-            $('#load_page_all_products').load("all-products-in-production-fix-script.php");
+        function load_page_materials_fix_script(){
+            $('#load_page_all_materials').load("all-materials-in-material-statistics-fix-script.php");
         }
 
-        load_page_products();
+        load_page_materials();
 
         function add_inventory(){
 
             var inventory_id = $('#inventory_id').val();
             var dealer_id = $('#dealer_id').val();
             var inventory_time = $('#inventory_time').val();
-            var products_updated = $('#products_updated').text();
+            var materials_updated = $('#materials_updated').text();
             var quantity_updated = $('#quantity_updated').text();
 
             if($('#inventory_note').val()){
@@ -451,12 +451,12 @@ show_add_modal();
                     form_data.append("dealer_id", dealer_id);
                     form_data.append("inventory_time", inventory_time);
                     form_data.append("inventory_note", inventory_note);
-                    form_data.append("products_updated", products_updated);
+                    form_data.append("materials_updated", materials_updated);
                     form_data.append("quantity_updated", quantity_updated);
                     form_data.append("action", action);
 
                     $.ajax({
-                        url: "action-for-production-inventory.php",
+                        url: "action-for-material-inventory.php",
                         type: "POST",
                         dataType: 'script',
                         cache: false,
@@ -479,7 +479,7 @@ show_add_modal();
                                 data_array.inventory_id,
                                 data_array.dealer_name,
                                 data_array.inventory_time,
-                                data_array.products_updated,
+                                data_array.materials_updated,
                                 data_array.quantity_updated,
                                 data_array.inventory_note,
                                 data_array.edit,
@@ -489,7 +489,7 @@ show_add_modal();
                             $('#show_new_modal_view').append(data_array.modal_view);
                             $('#show_new_modal_delete').append(data_array.modal_delete);
                             load_table_data();
-                            load_page_products_fix_script();
+                            load_page_materials_fix_script();
                             $('#form_input_inventory')[0].reset();
                             $('#add-modal').modal('toggle');
                             $('.modal-backdrop').remove();
@@ -503,7 +503,7 @@ show_add_modal();
             var action = "delete";
             var inventory_id = id;
             $.ajax({
-                url: "action-for-production-inventory.php",
+                url: "action-for-material-inventory.php",
                 type: "POST",
                 data: {
                     action: action,
@@ -524,14 +524,14 @@ show_add_modal();
                     let delete_row = select.parentNode;
                     console.log(delete_row);
                     dataTable.rows().remove(delete_row.dataIndex);
-                    load_page_products();
+                    load_page_materials();
                 }
             });
         }
 
         function load_table_data(){
             $.ajax({
-                url: "get-table-for-production.php",
+                url: "get-table-for-material.php",
                 type: "POST",
                 success: function(data){
                     $('#all_items').html(data);
@@ -544,7 +544,7 @@ show_add_modal();
         function empty_table(){
             var action = "empty";
             $.ajax({
-                url: "action-for-production-table.php",
+                url: "action-for-material-table.php",
                 type: "POST",
                 data: {action: action},
                 success: function(){
@@ -565,13 +565,13 @@ show_add_modal();
 
         function delete_table_item(id){
             var action = "remove";
-            var product_id = id;
+            var material_id = id;
             $.ajax({
-                url: "action-for-production-table.php",
+                url: "action-for-material-table.php",
                 type: "POST",
                 data: {
                     action: action,
-                    product_id: product_id
+                    material_id: material_id
                 },
                 success: function(){
                     Toastify({
@@ -590,9 +590,9 @@ show_add_modal();
         };
 
         function update_table_item_quantity(id){
-            var additional_quantity = $("#input_product_quantity"+id).val();
+            var additional_quantity = $("#input_material_quantity"+id).val();
             var action = "update";
-            var product_id = id;
+            var material_id = id;
 
             if (additional_quantity == 0){
                 Toastify({
@@ -608,11 +608,11 @@ show_add_modal();
                         delete_table_item(id);
             } else if (additional_quantity > 0) {
                 $.ajax({
-                    url: "action-for-production-table.php",
+                    url: "action-for-material-table.php",
                     type: "POST",
                     data: {
                         action: action,
-                        product_id: product_id,
+                        material_id: material_id,
                         additional_quantity: additional_quantity
                     },
                     success: function(){
@@ -630,27 +630,27 @@ show_add_modal();
                         stopOnFocus: true,
                         }).showToast();
                         //alert("Quantity < 0. Try again!");;
-                        $("#form_product_quantity"+id)[0].reset();
+                        $("#form_material_quantity"+id)[0].reset();
             };
         }
 
-        $("#select_product").change(function(){
-            var product_id = $(this).val();
-            var product_name = $(this).text();
-            var product_stock = $("#product_stock" + product_id).val();
+        $("#select_material").change(function(){
+            var material_id = $(this).val();
+            var material_name = $(this).text();
+            var material_stock = $("#material_stock" + material_id).val();
             var additional_quantity = "1";
             var action = "add";
 
             var form_data = new FormData();
 
-            form_data.append("product_id", product_id);
-            form_data.append("product_name", product_name);
-            form_data.append("product_stock", product_stock);
+            form_data.append("material_id", material_id);
+            form_data.append("material_name", material_name);
+            form_data.append("material_stock", material_stock);
             form_data.append("additional_quantity", additional_quantity);
             form_data.append("action", action);
 
             $.ajax({
-                url: "action-for-production-table.php",
+                url: "action-for-material-table.php",
                 type: "POST",
                 dataType: 'script',
                 cache: false,
@@ -659,7 +659,7 @@ show_add_modal();
                 data: form_data,
                 success: function(){
                     Toastify({
-                        text: "\""+ product_name + "\" has been added into table!",
+                        text: "\""+ material_name + "\" has been added into table!",
                         duration: 5000,
                         close: true,
                         gravity: "top",
@@ -667,9 +667,9 @@ show_add_modal();
                         backgroundColor: "#39DA8A",
                         stopOnFocus: true,
                         }).showToast();
-                        //alert("\""+ product_name + "\" has been added into table!");
+                        //alert("\""+ material_name + "\" has been added into table!");
                     load_table_data();
-                    $("#form_select_product")[0].reset();
+                    $("#form_select_material")[0].reset();
                 }
             });
         });
@@ -678,11 +678,12 @@ show_add_modal();
 
 
 
-        //---------------------Script for All Products--------------------------
+        //---------------------Script for All Materials--------------------------
 
-        // let table2 = document.querySelector('#table2');
-        // let dataTable2 = new simpleDatatables.DataTable(table2);
-        //---------------------Script for All Products--------------------------
+        table2 = document.querySelector('#table2');
+        dataTable2 = new simpleDatatables.DataTable(table2);
+
+        //---------------------Script for All Materials--------------------------
 
 
 </script>
