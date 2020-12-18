@@ -5,4 +5,4 @@ A small PHP project - Dashboard Admin
 
 Студент: Ле Динь Кыонг - Группа: ИКБО-07-19 - Университет: МИРЭА
 
-Website: http://dinhcuong.me - Email: dinhcuong.firewin99@gmail.com>
+Website: http://dinhcuong.me - Email: dinhcuong.firewin99@gmail.com
