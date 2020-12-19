@@ -247,6 +247,7 @@ if (isset($_POST["action"])) {
                                                                     </div>
                                                                 </form>
                                                             <div class="col-12 d-flex justify-content-end ">
+                                                                <a class="btn btn-success mr-1 mb-1" href="view-pdf-order.php?order_id=' . $row_table_body["order_id"] . '">View PDF</a>
                                                                 <button class="btn btn-primary mr-1 mb-1" onclick="update_order(' . $row_table_body["order_id"] . ')">Update</button>
                                                                 <button class="btn btn-light-secondary mr-1 mb-1" data-dismiss="modal" >Cancel</button>
                                                             </div>

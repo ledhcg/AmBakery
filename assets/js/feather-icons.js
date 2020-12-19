@@ -127,7 +127,7 @@ __webpack_require__(/*! feather-icons/dist/feather.min.js */ "./node_modules/fea
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Programmer\Code\HTML_CSS\Voler\src\assets\js\feather-icons.js */"./src/assets/js/feather-icons.js");
+module.exports = __webpack_require__(/*! D:\Programmer\Code\HTML_CSS\AmBakery\assets\js\feather-icons.js */"./src/assets/js/feather-icons.js");
 
 
 /***/ })

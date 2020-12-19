@@ -192,7 +192,7 @@ if (isset($_POST["action"])) {
                                                                     </div>
                                                                 </form>
                                                             <div class="col-12 d-flex justify-content-end ">
-                                                                <button class="btn btn-primary mr-1 mb-1" onclick="convert_pdf(' . $row_table_body["inventory_id"] . ')">View PDF</button>
+                                                                <a class="btn btn-success mr-1 mb-1" href="view-pdf-material-inv-added.php?inventory_id=' . $row_table_body["inventory_id"] . '">View PDF</a>
                                                                 <button class="btn btn-light-secondary mr-1 mb-1" data-dismiss="modal" >Cancel</button>
                                                             </div>
                                                         </div>

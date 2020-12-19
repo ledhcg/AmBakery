@@ -32,7 +32,9 @@ if ($rows > 0) {
                 break;
             case "production_statistics":$check_selected = "PRODUCTION STATISTICS";
                 break;
-            case "material_statistics":$check_selected = "MATERIAL STATISTICS";
+            case "material_import":$check_selected = "MATERIAL STATISTICS";
+                break;
+            case "material_used":$check_selected = "MATERIAL STATISTICS";
                 break;
             case "all_materials":$check_selected = "MATERIAL STATISTICS";
                 break;
@@ -65,6 +67,12 @@ if ($rows > 0) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <script src="assets/vendors/chartjs/Chart.min.js"></script>
+    <script src="assets/vendors/apexcharts/apexcharts.min.js"></script>
+
+
+
 </head>
 <body >
     <div id="app">
@@ -189,7 +197,7 @@ if ($rows > 0) {
 
                 <li class="sidebar-item has-sub <?php if ($check_selected == "PRODUCTION STATISTICS") {echo "active";}?>">
                     <a href="#" class='sidebar-link'>
-                        <i data-feather="database" width="20"></i>
+                        <i data-feather="repeat" width="20"></i>
                         <span>Production</span>
                     </a>
                     <ul class="submenu ">
@@ -204,7 +212,7 @@ if ($rows > 0) {
 
                 <li class="sidebar-item has-sub <?php if ($check_selected == "ALL PARTNERS") {echo "active";}?>">
                     <a href="#" class='sidebar-link'>
-                        <i data-feather="database" width="20"></i>
+                        <i data-feather="credit-card" width="20"></i>
                         <span>Partner</span>
                     </a>
                     <ul class="submenu ">
@@ -219,15 +227,21 @@ if ($rows > 0) {
 
                 <li class="sidebar-item has-sub <?php if ($check_selected == "MATERIAL STATISTICS") {echo "active";}?> ">
                     <a href="#" class='sidebar-link'>
-                        <i data-feather="database" width="20"></i>
+                        <i data-feather="package" width="20"></i>
                         <span>Materials</span>
                     </a>
                     <ul class="submenu ">
                         <li>
-                            <a href="admin.php?page_layout=material_statistics&name_modal=add_material_inventory">Import Materials</a>
+                            <a href="admin.php?page_layout=material_import&name_modal=add_material_inventory">Import Inventory</a>
                         </li>
                         <li>
-                            <a href="admin.php?page_layout=material_statistics">Material Statistics</a>
+                            <a href="admin.php?page_layout=material_import">Material Import</a>
+                        </li>
+                        <li>
+                            <a href="admin.php?page_layout=material_used&name_modal=add_material_inv_used">Used Inventory</a>
+                        </li>
+                        <li>
+                            <a href="admin.php?page_layout=material_used">Material Used</a>
                         </li>
                         <li>
                             <a href="admin.php?page_layout=all_materials">All Materials</a>
@@ -269,29 +283,6 @@ if ($rows > 0) {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav d-flex align-items-center navbar-light ml-auto">
-                        <li class="dropdown nav-icon">
-                            <a href="#" data-toggle="dropdown" class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
-                                <div class="avatar d-lg-inline-block">
-                                    <i data-feather="bell"></i>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-large">
-                                <h6 class='py-2 px-4'>Notifications</h6>
-                                <ul class="list-group rounded-none">
-                                    <li class="list-group-item border-0 align-items-start">
-                                        <div class="avatar bg-success mr-3">
-                                            <span class="avatar-content"><i data-feather="shopping-cart"></i></span>
-                                        </div>
-                                        <div>
-                                            <h6 class='text-bold'>New Order</h6>
-                                            <p class='text-xs'>
-                                                An order made by Ahmad Saugi for product Samsung Galaxy S69
-                                            </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
 
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
@@ -338,7 +329,11 @@ if ($rows > 0) {
                 break;
             case "all_partners":include_once './all-partners.php';
                 break;
-            case "material_statistics":include_once './material-statistics.php';
+            case "material_import":include_once './material-import.php';
+                break;
+            case "material_used":include_once './material-used.php';
+                break;
+            case "pdf":include_once './convert-to-pdf.php';
                 break;
             default:include_once './dashboard.php';
         }
@@ -356,17 +351,13 @@ if ($rows > 0) {
     <script src="assets/js/feather-icons/feather.min.js"></script>
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/app.js"></script>
-    <script src="assets/vendors/chartjs/Chart.min.js"></script>
-    <script src="assets/vendors/apexcharts/apexcharts.min.js"></script>
-    <script src="assets/js/pages/dashboard.js"></script>
-    <!-- Include Choices JavaScript -->
-    <!-- <script src="assets/vendors/choices.js/choices.min.js"></script> -->
-    <!-- <script src="assets/vendors/simple-datatables/simple-datatables.js"></script> -->
     <script src="assets/js/vendors.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="assets/vendors/datepicker/datepicker.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
 
 </body>
 </html>

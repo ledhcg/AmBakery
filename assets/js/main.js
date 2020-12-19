@@ -146,7 +146,7 @@ feather.replace();
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Programmer\Code\HTML_CSS\Voler\src\assets\js\main.js */"./src/assets/js/main.js");
+module.exports = __webpack_require__(/*! D:\Programmer\Code\HTML_CSS\AmBakery\assets\js\main.js */"./src/assets/js/main.js");
 
 
 /***/ })

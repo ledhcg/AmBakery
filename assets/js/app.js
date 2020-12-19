@@ -7850,9 +7850,9 @@ __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Programmer\Code\HTML_CSS\Voler\src\assets\js\app.js */"./src/assets/js/app.js");
-__webpack_require__(/*! D:\Programmer\Code\HTML_CSS\Voler\src\assets\scss\app.scss */"./src/assets/scss/app.scss");
-module.exports = __webpack_require__(/*! D:\Programmer\Code\HTML_CSS\Voler\src\assets\scss\bootstrap.scss */"./src/assets/scss/bootstrap.scss");
+__webpack_require__(/*! D:\Programmer\Code\HTML_CSS\AmBakery\assets\js\app.js */"./src/assets/js/app.js");
+__webpack_require__(/*! D:\Programmer\Code\HTML_CSS\AmBakery\assets\scss\app.scss */"./src/assets/scss/app.scss");
+module.exports = __webpack_require__(/*! D:\Programmer\Code\HTML_CSS\AmBakery\assets\scss\bootstrap.scss */"./src/assets/scss/bootstrap.scss");
 
 
 /***/ })

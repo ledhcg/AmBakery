@@ -13,12 +13,11 @@ $rows_customer = mysqli_num_rows($query_customer);
 $sql_order = "SELECT * FROM tbl_order";
 $query_order = mysqli_query($connect, $sql_order);
 $rows_order = mysqli_num_rows($query_order);
-if ($rows_order > 0){
+if ($rows_order > 0) {
     while ($row_array_order = mysqli_fetch_array($query_order)) {
         $proceeds += $row_array_order["order_total"];
     }
 }
-
 
 ?>
 
@@ -291,3 +290,5 @@ if ($rows_order > 0){
             </div>
         </div>
     </section>
+    <script src="assets/js/pages/dashboard.js"></script>
+
