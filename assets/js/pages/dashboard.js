@@ -393,98 +393,98 @@ Chart.controllers.roundedBar = Chart.controllers.bar.extend({
   dataElementType: Chart.elements.RoundedTopRectangle
 });
 
-var ctxBar = document.getElementById("bar").getContext("2d");
-var myBar = new Chart(ctxBar, {
-  type: 'bar',
-  data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-    datasets: [{
-      label: 'Students',
-      backgroundColor: [chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.info, chartColors.blue, chartColors.grey],
-      data: [
-        5, 
-        10, 
-        30, 
-        40, 
-        35, 
-        55, 
-        15, 
-      ]
-    }]
-  },
-  options: {
-    responsive: true,
-    barRoundness: 1,
-    title: {
-      display: false,
-      text: "Chart.js - Bar Chart with Rounded Tops (drawRoundedTopRectangle Method)"
-    },
-    legend: {
-      display:false
-    },
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true,
-          suggestedMax: 40 + 20,
-          padding: 10,
-        },
-        gridLines: {
-          drawBorder: false,
-        }
-      }],
-      xAxes: [{
-            gridLines: {
-                display:false,
-                drawBorder: false
-            }
-        }]
-    }
-  }
-});
-var radialBarsOptions = {
-  series: [44, 80, 67],
-  chart: {
-    height: 350,
-    type: "radialBar",
-  },
-  theme: {
-    mode: "light",
-    palette: "palette1",
-    monochrome: {
-      enabled: true,
-      color: "#3245D1",
-      shadeTo: "light",
-      shadeIntensity: 0.65,
-    },
-  },
-  plotOptions: {
-    radialBar: {
-      dataLabels: {
-        name: {
-          offsetY: -15,
-          fontSize: "22px",
-        },
-        value: {
-          fontSize: "2.5rem",
-        },
-        total: {
-          show: true,
-          label: "Earnings",
-          color: "#25A6F1",
-          fontSize: "16px",
-          formatter: function(w) {
-            // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-            return "$4,124";
-          },
-        },
-      },
-    },
-  },
-  labels: ["Apples", "Oranges", "Bananas", "Berries"],
-};
-var radialBars = new ApexCharts(document.querySelector("#radialBars"), radialBarsOptions);
-radialBars.render();
+// var ctxBar = document.getElementById("bar").getContext("2d");
+// var myBar = new Chart(ctxBar, {
+//   type: 'bar',
+//   data: {
+//     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+//     datasets: [{
+//       label: 'Students',
+//       backgroundColor: [chartColors.grey, chartColors.grey, chartColors.grey, chartColors.grey, chartColors.info, chartColors.blue, chartColors.grey],
+//       data: [
+//         5, 
+//         10, 
+//         30, 
+//         40, 
+//         35, 
+//         55, 
+//         15, 
+//       ]
+//     }]
+//   },
+//   options: {
+//     responsive: true,
+//     barRoundness: 1,
+//     title: {
+//       display: false,
+//       text: "Chart.js - Bar Chart with Rounded Tops (drawRoundedTopRectangle Method)"
+//     },
+//     legend: {
+//       display:false
+//     },
+//     scales: {
+//       yAxes: [{
+//         ticks: {
+//           beginAtZero: true,
+//           suggestedMax: 40 + 20,
+//           padding: 10,
+//         },
+//         gridLines: {
+//           drawBorder: false,
+//         }
+//       }],
+//       xAxes: [{
+//             gridLines: {
+//                 display:false,
+//                 drawBorder: false
+//             }
+//         }]
+//     }
+//   }
+// });
+// var radialBarsOptions = {
+//   series: [44, 80, 67],
+//   chart: {
+//     height: 350,
+//     type: "radialBar",
+//   },
+//   theme: {
+//     mode: "light",
+//     palette: "palette1",
+//     monochrome: {
+//       enabled: true,
+//       color: "#3245D1",
+//       shadeTo: "light",
+//       shadeIntensity: 0.65,
+//     },
+//   },
+//   plotOptions: {
+//     radialBar: {
+//       dataLabels: {
+//         name: {
+//           offsetY: -15,
+//           fontSize: "22px",
+//         },
+//         value: {
+//           fontSize: "2.5rem",
+//         },
+//         total: {
+//           show: true,
+//           label: "Earnings",
+//           color: "#25A6F1",
+//           fontSize: "16px",
+//           formatter: function(w) {
+//             // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
+//             return "$4,124";
+//           },
+//         },
+//       },
+//     },
+//   },
+//   labels: ["Apples", "Oranges", "Bananas", "Berries"],
+// };
+// var radialBars = new ApexCharts(document.querySelector("#radialBars"), radialBarsOptions);
+// radialBars.render();
 let ctx1 = document.getElementById("canvas1").getContext("2d");
 let ctx2 = document.getElementById("canvas2").getContext("2d");
 let ctx3 = document.getElementById("canvas3").getContext("2d");

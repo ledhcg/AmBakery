@@ -333,8 +333,6 @@ if ($rows > 0) {
                 break;
             case "material_used":include_once './material-used.php';
                 break;
-            case "pdf":include_once './convert-to-pdf.php';
-                break;
             default:include_once './dashboard.php';
         }
     } else {
