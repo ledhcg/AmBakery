@@ -354,7 +354,7 @@ if (isset($_POST["action"])) {
         $product_status = $_POST["product_status"];
 
         if (isset($_FILES["product_image"]["name"])) {
-            $upload_dir = "images/categories/";
+            $upload_dir = "images/products/";
             $fileName = basename($_FILES["product_image"]["name"]);
             $targetFilePath = $upload_dir . $fileName;
             $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);

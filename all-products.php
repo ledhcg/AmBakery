@@ -194,7 +194,7 @@ if (mysqli_num_rows($query_table_body) > 0) {
                                                                     </div>
                                                             </div>
                                                         </div>
-                                                    </div>  
+                                                    </div>
                                                     <script>
                                                             document.getElementById(\'file-upload' . $row_table_body['id'] . '\').onchange = function () {
                                                                 if (this.files && this.files[0]) {
@@ -214,7 +214,7 @@ if (mysqli_num_rows($query_table_body) > 0) {
                                                     </script>
                                                 </div>
                                                 </form>
-                                                
+
                                                 <div class="col-12 d-flex justify-content-end">
                                                     <button class="btn btn-primary mr-1 mb-1" id="submit' . $row_table_body['id'] . '" onclick="update_product(' . $row_table_body['id'] . ')">Update</button>
                                                     <button class="btn btn-light-secondary mr-1 mb-1"  data-dismiss="modal" >Cancel</button>
@@ -426,7 +426,7 @@ while ($row_brand_add = mysqli_fetch_array($query_brand_add)) {
                                             </div>
                                         </div>
 
-                                        
+
                                         </div>
                                         </form>
                                         <div class="col-12 d-flex justify-content-end">
@@ -434,7 +434,7 @@ while ($row_brand_add = mysqli_fetch_array($query_brand_add)) {
                                             <button class="btn btn-light-secondary mr-1 mb-1"  data-dismiss="modal" >Cancel</button>
                                         </div>
                                     </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -444,7 +444,8 @@ while ($row_brand_add = mysqli_fetch_array($query_brand_add)) {
 <script>
 
 <?php
-function show_add_modal (){
+function show_add_modal()
+{
     if (isset($_GET["name_modal"])) {
         if ($_GET["name_modal"] == "add_product") {
             echo "
@@ -485,9 +486,9 @@ show_add_modal();
                         duration: 5000,
                         close: true,
                         gravity: "top",
-                        position: "center", 
+                        position: "center",
                         backgroundColor: "#39DA8A",
-                        stopOnFocus: true, 
+                        stopOnFocus: true,
                         }).showToast();
                     //alert("Product has been deleted!");
                     let select = document.getElementById("td-"+id).parentNode;
@@ -526,9 +527,9 @@ show_add_modal();
                         duration: 5000,
                         close: true,
                         gravity: "top",
-                        position: "center", 
+                        position: "center",
                         backgroundColor: "#F55260",
-                        stopOnFocus: true, 
+                        stopOnFocus: true,
                         }).showToast();
                 //alert("Please enter all fields! Try again!");
             } else {
@@ -562,9 +563,9 @@ show_add_modal();
                         duration: 5000,
                         close: true,
                         gravity: "top",
-                        position: "center", 
+                        position: "center",
                         backgroundColor: "#39DA8A",
-                        stopOnFocus: true, 
+                        stopOnFocus: true,
                         }).showToast();
                         //alert("Product has been updated!");
                         var data_array = jQuery.parseJSON(data);
@@ -581,7 +582,7 @@ show_add_modal();
                                 data_array.edit,
                         ];
                         let select = document.getElementById("td-"+id).parentNode;
-                        let delete_row = select.parentNode; 
+                        let delete_row = select.parentNode;
                         dataTable.rows().remove(delete_row.dataIndex);
                         dataTable.rows().add(newRow);
                         dataTable.sortColumn(0, "desc");
@@ -594,7 +595,7 @@ show_add_modal();
                     }
                 });
             }
-            
+
     };
 
     function create(){
@@ -624,9 +625,9 @@ show_add_modal();
                         duration: 5000,
                         close: true,
                         gravity: "top",
-                        position: "center", 
+                        position: "center",
                         backgroundColor: "#F55260",
-                        stopOnFocus: true, 
+                        stopOnFocus: true,
                         }).showToast();
                 //alert("Please enter all fields! Try again!");
             } else {
@@ -657,9 +658,9 @@ show_add_modal();
                         duration: 5000,
                         close: true,
                         gravity: "top",
-                        position: "center", 
+                        position: "center",
                         backgroundColor: "#39DA8A",
-                        stopOnFocus: true, 
+                        stopOnFocus: true,
                         }).showToast();
                         //alert("A new product created!");
                         var data_array = jQuery.parseJSON(data);
@@ -688,7 +689,7 @@ show_add_modal();
             }
 
 
-            
+
     };
 
     document.getElementById('file-upload').onchange = function () {

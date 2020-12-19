@@ -303,7 +303,7 @@ if (isset($_POST["action"])) {
         $material_status = $_POST["material_status"];
 
         if (isset($_FILES["material_image"]["name"])) {
-            $upload_dir = "images/categories/";
+            $upload_dir = "images/materials/";
             $fileName = basename($_FILES["material_image"]["name"]);
             $targetFilePath = $upload_dir . $fileName;
             $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
