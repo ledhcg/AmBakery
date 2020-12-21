@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION["email"])) {
+    header('location: login.php');
+}
 include_once './connect.php';
 
 if (isset($_POST["action"])) {
@@ -45,7 +48,7 @@ if (isset($_POST["action"])) {
             $query_table_body = mysqli_query($connect, $sql_table_body);
             if (mysqli_num_rows($query_table_body) > 0) {
                 $row_table_body = mysqli_fetch_array($query_table_body);
-                
+
                 //--------------- Start EDIT MODAL ---------------
                 $modal_edit .= '
                         <div class="modal fade text-left w-100 modal-borderless" id="edit-modal-' . $row_table_body["id"] . '" tabindex="-1" role="dialog"
@@ -126,7 +129,7 @@ if (isset($_POST["action"])) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                
+
                                             </div>
                                             </form>
                                                 <div class="col-12 d-flex justify-content-end">
@@ -134,7 +137,7 @@ if (isset($_POST["action"])) {
                                                     <button class="btn btn-light-secondary mr-1 mb-1"  data-dismiss="modal" >Cancel</button>
                                                 </div>
                                             </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -235,9 +238,9 @@ if (isset($_POST["action"])) {
             $query_table_body = mysqli_query($connect, $sql_table_body);
             if (mysqli_num_rows($query_table_body) > 0) {
 
-                    $row_table_body = mysqli_fetch_array($query_table_body);
+                $row_table_body = mysqli_fetch_array($query_table_body);
 
-                    $form_customer = '
+                $form_customer = '
                         <div class="row">
                             <div class="col-md-6 col-12">
                                 <div class="form-group has-icon-left">
@@ -309,41 +312,41 @@ if (isset($_POST["action"])) {
                         </div>
                     ';
 
-                    $customer_column = '<a id="td-' . $row_table_body["id"] . '">' . $row_table_body["id"] . '<a></td>';
-                    $table_customers = array(
-                        "customer_id" => $customer_column,
-                        "customer_name" => $row_table_body["customer_name"],
-                        "customer_email" => $row_table_body["customer_email"],
-                        "customer_phone" => $row_table_body["customer_phone"],
-                        "customer_address" => $row_table_body["customer_address"],
-                        "customer_dob" => $row_table_body["customer_dob"],
-                        "customer_gender" => $row_table_body["customer_gender"],
-                        "edit" => '
+                $customer_column = '<a id="td-' . $row_table_body["id"] . '">' . $row_table_body["id"] . '<a></td>';
+                $table_customers = array(
+                    "customer_id" => $customer_column,
+                    "customer_name" => $row_table_body["customer_name"],
+                    "customer_email" => $row_table_body["customer_email"],
+                    "customer_phone" => $row_table_body["customer_phone"],
+                    "customer_address" => $row_table_body["customer_address"],
+                    "customer_dob" => $row_table_body["customer_dob"],
+                    "customer_gender" => $row_table_body["customer_gender"],
+                    "edit" => '
                                 <div class="buttons">
                                     <a style="margin: 2px 2.5px 2px 2.5px" href="#" class="btn icon btn-primary" data-toggle="modal" data-target="#edit-modal-' . $row_table_body['id'] . '"><i class="far fa-edit"></i></a>
                                     <a style="margin: 2px 2.5px 2px 2.5px" href="#" class="btn icon btn-danger" data-toggle="modal" data-target="#delete-modal-' . $row_table_body['id'] . '"><i class="far fa-trash-alt"></i></a>
                                 </div>
                         ',
-                        "form_customer" => $form_customer,
-                    );
-                    echo json_encode($table_customers);
-                }
-
-            } else {
-                $table_customers = array(
-                    "customer_id" => "ERROR",
-                    "customer_name" => "ERROR",
-                    "customer_email" => "ERROR",
-                    "customer_phone" => "ERROR",
-                    "customer_address" => "ERROR",
-                    "customer_dob" => "ERROR",
-                    "customer_gender" => "ERROR",
-                    "edit" => "ERROR",
-                    "form_customer" => "",
+                    "form_customer" => $form_customer,
                 );
                 echo json_encode($table_customers);
             }
+
+        } else {
+            $table_customers = array(
+                "customer_id" => "ERROR",
+                "customer_name" => "ERROR",
+                "customer_email" => "ERROR",
+                "customer_phone" => "ERROR",
+                "customer_address" => "ERROR",
+                "customer_dob" => "ERROR",
+                "customer_gender" => "ERROR",
+                "edit" => "ERROR",
+                "form_customer" => "",
+            );
+            echo json_encode($table_customers);
         }
+    }
 
     if ($_POST["action"] == "delete") {
         $email_login = $_SESSION["email"];
@@ -360,4 +363,3 @@ if (isset($_POST["action"])) {
         }
     }
 }
-

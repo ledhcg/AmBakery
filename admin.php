@@ -323,8 +323,6 @@ if ($rows > 0) {
                 break;
             case "production_statistics":include_once './production-statistics.php';
                 break;
-            case "all_products_in_production":include_once './all-products-in-production.php';
-                break;
             case "all_materials":include_once './all-materials.php';
                 break;
             case "all_partners":include_once './all-partners.php';

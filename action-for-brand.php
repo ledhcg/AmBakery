@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION["email"])) {
+    header('location: login.php');
+}
+
 include_once './connect.php';
 
 if (isset($_POST["action"])) {
@@ -47,7 +51,7 @@ if (isset($_POST["action"])) {
             $query_table_body = mysqli_query($connect, $sql_table_body);
             if (mysqli_num_rows($query_table_body) > 0) {
                 $row_table_body = mysqli_fetch_array($query_table_body);
-                
+
                 //--------------- Start EDIT MODAL ---------------
                 $modal_edit .= '
                         <div class="modal fade text-left w-100 modal-borderless" id="edit-modal-' . $row_table_body["id"] . '" tabindex="-1" role="dialog"
@@ -74,12 +78,12 @@ if (isset($_POST["action"])) {
                 ';
 
                 if ($row_table_body['brand_status']) {
-                $modal_edit .= '
+                    $modal_edit .= '
                 <option value="1" selected>Active</option>
                 <option value="0">Inactive</option>
                 ';
                 } else {
-                $modal_edit .= '
+                    $modal_edit .= '
                 <option value="1">Active</option>
                 <option value="0" selected>Inactive</option>
                 ';
@@ -135,7 +139,7 @@ if (isset($_POST["action"])) {
 
                                                     </script>
 
-                                                    
+
                                                 </div>
                                                 </form>
                                                     <div class="col-12 d-flex justify-content-end">
@@ -143,7 +147,7 @@ if (isset($_POST["action"])) {
                                                         <button type="reset" class="btn btn-light-secondary mr-1 mb-1"  data-dismiss="modal" >Cancel</button>
                                                     </div>
                                             </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -192,7 +196,7 @@ if (isset($_POST["action"])) {
                             <img src="images/brands/' . $row_table_body["brand_image"] . '" alt="" srcset="">
                         </div>
                 ';
-                
+
                 $table_brands = array(
                     "brand_id" => $brand_column,
                     "brand_image" => $brand_image_column,
@@ -244,21 +248,21 @@ if (isset($_POST["action"])) {
                 }
             }
             if (isset($brand_name)
-            && isset($brand_status)
-            && isset($brand_description)
-            && isset($brand_image)) {
-            $sql_update = "UPDATE tbl_brand SET
+                && isset($brand_status)
+                && isset($brand_description)
+                && isset($brand_image)) {
+                $sql_update = "UPDATE tbl_brand SET
                 brand_name = '$brand_name',
                 brand_status ='$brand_status',
                 brand_description ='$brand_description',
                 brand_image ='$brand_image',
                 updated_at = NOW()
                 WHERE id='$brand_id'";
-            $query_update = mysqli_query($connect, $sql_update);
+                $query_update = mysqli_query($connect, $sql_update);
 
-            $sql_table_body = "SELECT * FROM tbl_brand WHERE id='$brand_id'";
-            $query_table_body = mysqli_query($connect, $sql_table_body);
-            if (mysqli_num_rows($query_table_body) > 0) {
+                $sql_table_body = "SELECT * FROM tbl_brand WHERE id='$brand_id'";
+                $query_table_body = mysqli_query($connect, $sql_table_body);
+                if (mysqli_num_rows($query_table_body) > 0) {
 
                     $row_table_body = mysqli_fetch_array($query_table_body);
 
@@ -277,12 +281,12 @@ if (isset($_POST["action"])) {
                     ';
 
                     if ($row_table_body['brand_status']) {
-                    $form_brand .= '
+                        $form_brand .= '
                     <option value="1" selected>Active</option>
                     <option value="0">Inactive</option>
                     ';
                     } else {
-                    $form_brand .= '
+                        $form_brand .= '
                     <option value="1">Active</option>
                     <option value="0" selected>Inactive</option>
                     ';
@@ -341,7 +345,7 @@ if (isset($_POST["action"])) {
 
                                         </script>
 
-                                        
+
                                     </div>
                     ';
 
@@ -389,19 +393,19 @@ if (isset($_POST["action"])) {
             }
         } else {
             if (isset($brand_name)
-            && isset($brand_status)
-            && isset($brand_description)) {
-            $sql_update = "UPDATE tbl_brand SET
+                && isset($brand_status)
+                && isset($brand_description)) {
+                $sql_update = "UPDATE tbl_brand SET
                 brand_name = '$brand_name',
                 brand_status ='$brand_status',
                 brand_description ='$brand_description',
                 updated_at = NOW()
                 WHERE id='$brand_id'";
-            $query_update = mysqli_query($connect, $sql_update);
+                $query_update = mysqli_query($connect, $sql_update);
 
-            $sql_table_body = "SELECT * FROM tbl_brand WHERE id='$brand_id'";
-            $query_table_body = mysqli_query($connect, $sql_table_body);
-            if (mysqli_num_rows($query_table_body) > 0) {
+                $sql_table_body = "SELECT * FROM tbl_brand WHERE id='$brand_id'";
+                $query_table_body = mysqli_query($connect, $sql_table_body);
+                if (mysqli_num_rows($query_table_body) > 0) {
 
                     $row_table_body = mysqli_fetch_array($query_table_body);
 
@@ -420,12 +424,12 @@ if (isset($_POST["action"])) {
                     ';
 
                     if ($row_table_body['brand_status']) {
-                    $form_brand .= '
+                        $form_brand .= '
                     <option value="1" selected>Active</option>
                     <option value="0">Inactive</option>
                     ';
                     } else {
-                    $form_brand .= '
+                        $form_brand .= '
                     <option value="1">Active</option>
                     <option value="0" selected>Inactive</option>
                     ';
@@ -483,7 +487,7 @@ if (isset($_POST["action"])) {
 
                                         </script>
 
-                                        
+
                                     </div>
                     ';
 
@@ -546,4 +550,3 @@ if (isset($_POST["action"])) {
         }
     }
 }
-

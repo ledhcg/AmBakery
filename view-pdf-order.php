@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (!isset($_SESSION["email"])) {
+    header('location: login.php');
+}
 
 require_once __DIR__ . '/vendor/autoload.php';
 include_once './connect.php';

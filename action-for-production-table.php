@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION["email"])) {
+    header('location: login.php');
+}
 
 if (isset($_POST["action"])) {
     if ($_POST["action"] == "add") {

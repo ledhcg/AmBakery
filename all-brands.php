@@ -127,7 +127,7 @@ if (mysqli_num_rows($query_table_body) > 0) {
 
                                                     </script>
 
-                                                    
+
                                                 </div>
                                                 </form>
                                                 <div class="col-12 d-flex justify-content-end">
@@ -135,7 +135,7 @@ if (mysqli_num_rows($query_table_body) > 0) {
                                                         <button class="btn btn-light-secondary mr-1 mb-1"  data-dismiss="modal" >Cancel</button>
                                                 </div>
                                             </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -285,7 +285,7 @@ echo $modal_delete;
                                             </div>
                                         </div>
 
-                                        
+
                                         </div>
                                         </form>
                                         <div class="col-12 d-flex justify-content-end">
@@ -293,7 +293,7 @@ echo $modal_delete;
                                             <button class="btn btn-light-secondary mr-1 mb-1"  data-dismiss="modal" >Cancel</button>
                                         </div>
                                     </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -303,18 +303,19 @@ echo $modal_delete;
 <script>
 
 <?php
-    function show_add_modal (){
-        if (isset($_GET["name_modal"])) {
-            if ($_GET["name_modal"] == "add_brand") {
-                echo "
+function show_add_modal()
+{
+    if (isset($_GET["name_modal"])) {
+        if ($_GET["name_modal"] == "add_brand") {
+            echo "
                         $(document).ready(function(){
                             $('#add-modal').modal('show');
                         });
                     ";
-            }
         }
     }
-    show_add_modal();
+}
+show_add_modal();
 ?>
 
     let table1 = document.querySelector('#table1');
@@ -322,7 +323,7 @@ echo $modal_delete;
 
     const element_add = document.querySelector(".js-choices-add");
     const choices_add = new Choices(element_add);
-    
+
 
     function delete_brand(id){
         var action = "delete";
@@ -340,9 +341,9 @@ echo $modal_delete;
                         duration: 5000,
                         close: true,
                         gravity: "top",
-                        position: "center", 
+                        position: "center",
                         backgroundColor: "#39DA8A",
-                        stopOnFocus: true, 
+                        stopOnFocus: true,
                         }).showToast();
                 //alert("Brand has been deleted!");;
                     let select = document.getElementById("td-"+id).parentNode;
@@ -368,9 +369,9 @@ echo $modal_delete;
                         duration: 5000,
                         close: true,
                         gravity: "top",
-                        position: "center", 
+                        position: "center",
                         backgroundColor: "#F55260",
-                        stopOnFocus: true, 
+                        stopOnFocus: true,
                         }).showToast();
                 //alert("Please enter all fields! Try again!");;
             } else {
@@ -383,7 +384,7 @@ echo $modal_delete;
             form_data.append("brand_description", brand_description);
             form_data.append("brand_image", file_data);
             form_data.append("action", action);
-            
+
             $.ajax({
                 url: "action-for-brand.php",
                 type: "POST",
@@ -398,9 +399,9 @@ echo $modal_delete;
                         duration: 5000,
                         close: true,
                         gravity: "top",
-                        position: "center", 
+                        position: "center",
                         backgroundColor: "#39DA8A",
-                        stopOnFocus: true, 
+                        stopOnFocus: true,
                         }).showToast();
                 //alert("Brand has been updated!");;
                         var data_array = jQuery.parseJSON(data);
@@ -444,9 +445,9 @@ echo $modal_delete;
                         duration: 5000,
                         close: true,
                         gravity: "top",
-                        position: "center", 
+                        position: "center",
                         backgroundColor: "#F55260",
-                        stopOnFocus: true, 
+                        stopOnFocus: true,
                         }).showToast();
                 //alert("Please enter all fields! Try again!");;
             } else {
@@ -458,7 +459,7 @@ echo $modal_delete;
             form_data.append("brand_description", brand_description);
             form_data.append("brand_image", file_data);
             form_data.append("action", action);
-            
+
             $.ajax({
                 url: "action-for-brand.php",
                 type: "POST",
@@ -473,9 +474,9 @@ echo $modal_delete;
                         duration: 5000,
                         close: true,
                         gravity: "top",
-                        position: "center", 
+                        position: "center",
                         backgroundColor: "#39DA8A",
-                        stopOnFocus: true, 
+                        stopOnFocus: true,
                         }).showToast();
                 //alert("A new brand created!");;
                         var data_array = jQuery.parseJSON(data);

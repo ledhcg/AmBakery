@@ -1,1 +1,19 @@
 ErrorDocument 404 /AmBakery/404.php
+ErrorDocument 403 /AmBakery/403.php
+
+Redirect 301 /AmBakery/about.php /AmBakery/admin.php?page_layout=about
+Redirect 301 /AmBakery/all-products.php /AmBakery/admin.php?page_layout=all_products
+Redirect 301 /AmBakery/all-partners.php /AmBakery/admin.php?page_layout=partners
+Redirect 301 /AmBakery/all-orders.php /AmBakery/admin.php?page_layout=orders
+Redirect 301 /AmBakery/all-materials.php /AmBakery/admin.php?page_layout=materials
+Redirect 301 /AmBakery/all-dealers.php /AmBakery/admin.php?page_layout=dealers
+Redirect 301 /AmBakery/all-customers.php /AmBakery/admin.php?page_layout=customers
+Redirect 301 /AmBakery/all-categories.php /AmBakery/admin.php?page_layout=categories
+Redirect 301 /AmBakery/all-brands.php /AmBakery/admin.php?page_layout=brands
+Redirect 301 /AmBakery/production-statistics.php /AmBakery/admin.php?page_layout=production_statistics
+Redirect 301 /AmBakery/material-used.php /AmBakery/admin.php?page_layout=material_used
+Redirect 301 /AmBakery/material-import.php /AmBakery/admin.php?page_layout=material_import
+Redirect 301 /AmBakery/dashboard.php /AmBakery/admin.php
+
+
+Options All -Indexes

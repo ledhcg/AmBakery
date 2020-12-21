@@ -3,6 +3,7 @@ ob_start();
 session_start();
 include_once './connect.php';
 
+$notify = "";
 if (isset($_POST["submit"])) {
     $email = $_POST["email"];
     $password = $_POST["password"];
@@ -18,7 +19,17 @@ if (isset($_POST["submit"])) {
             $_SESSION["image"] = $data["admin_image"];
             header('location: admin.php');
         } else {
-            echo '<a>Error</a>';
+            $notify .= '<script>
+            Toastify({
+                text: "The email address or password is incorrect. Please retry...! Try again!",
+                duration: 5000,
+                close: true,
+                gravity: "top",
+                position: "center",
+                backgroundColor: "#F55260",
+                stopOnFocus: true,
+                }).showToast();
+                </script>';
         }
     }
 }
@@ -38,6 +49,10 @@ if (!isset($_SESSION["email"])) {
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="shortcut icon" href="assets/logo/AmBakery.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 </head>
 
 <body>
@@ -77,7 +92,9 @@ if (!isset($_SESSION["email"])) {
                             <button type="submit" class="btn btn-primary float-right" name="submit" id="submit">LOGIN</button>
                         </div>
                     </form>
-
+                    <?php
+echo $notify;
+    ?>
                     <div class="divider">
                         <div class="divider-text">OR</div>
                     </div>
@@ -122,6 +139,8 @@ if (!isset($_SESSION["email"])) {
     </div>
     <script src="assets/js/feather-icons/feather.min.js"></script>
     <script src="assets/js/app.js"></script>
+
+
 
     <script src="assets/js/main.js"></script>
 </body>

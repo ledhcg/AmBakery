@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION["email"])) {
+    header('location: login.php');
+}
 
 $materials_updated = 0;
 $quantity_updated = 0;

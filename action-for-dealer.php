@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION["email"])) {
+    header('location: login.php');
+}
 include_once './connect.php';
 
 if (isset($_POST["action"])) {
@@ -45,7 +48,7 @@ if (isset($_POST["action"])) {
             $query_table_body = mysqli_query($connect, $sql_table_body);
             if (mysqli_num_rows($query_table_body) > 0) {
                 $row_table_body = mysqli_fetch_array($query_table_body);
-                
+
                 //--------------- Start EDIT MODAL ---------------
                 $modal_edit .= '
                         <div class="modal fade text-left w-100 modal-borderless" id="edit-modal-' . $row_table_body["id"] . '" tabindex="-1" role="dialog"
@@ -126,7 +129,7 @@ if (isset($_POST["action"])) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                
+
                                             </div>
                                             </form>
                                             <div class="col-12 d-flex justify-content-end">
@@ -134,7 +137,7 @@ if (isset($_POST["action"])) {
                                                 <button class="btn btn-light-secondary mr-1 mb-1"  data-dismiss="modal" >Cancel</button>
                                             </div>
                                             </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -235,9 +238,9 @@ if (isset($_POST["action"])) {
             $query_table_body = mysqli_query($connect, $sql_table_body);
             if (mysqli_num_rows($query_table_body) > 0) {
 
-                    $row_table_body = mysqli_fetch_array($query_table_body);
-                    
-                    $form_dealer = '
+                $row_table_body = mysqli_fetch_array($query_table_body);
+
+                $form_dealer = '
                             <div class="row">
                             <div class="col-md-6 col-12">
                                 <div class="form-group has-icon-left">
@@ -306,46 +309,46 @@ if (isset($_POST["action"])) {
                                     </div>
                                 </div>
                             </div>
-                        
+
                     </div>
                     ';
 
-                    $dealer_column = '<a id="td-' . $row_table_body["id"] . '">' . $row_table_body["id"] . '<a></td>';
-                    $table_dealers = array(
-                        "dealer_id" => $dealer_column,
-                        "dealer_name" => $row_table_body["dealer_name"],
-                        "dealer_email" => $row_table_body["dealer_email"],
-                        "dealer_phone" => $row_table_body["dealer_phone"],
-                        "dealer_address" => $row_table_body["dealer_address"],
-                        "dealer_dob" => $row_table_body["dealer_dob"],
-                        "dealer_gender" => $row_table_body["dealer_gender"],
-                        "edit" => '
+                $dealer_column = '<a id="td-' . $row_table_body["id"] . '">' . $row_table_body["id"] . '<a></td>';
+                $table_dealers = array(
+                    "dealer_id" => $dealer_column,
+                    "dealer_name" => $row_table_body["dealer_name"],
+                    "dealer_email" => $row_table_body["dealer_email"],
+                    "dealer_phone" => $row_table_body["dealer_phone"],
+                    "dealer_address" => $row_table_body["dealer_address"],
+                    "dealer_dob" => $row_table_body["dealer_dob"],
+                    "dealer_gender" => $row_table_body["dealer_gender"],
+                    "edit" => '
                                 <div class="buttons">
                                     <a style="margin: 2px 2.5px 2px 2.5px" href="#" class="btn icon btn-primary" data-toggle="modal" data-target="#edit-modal-' . $row_table_body['id'] . '"><i class="far fa-edit"></i></a>
                                     <a style="margin: 2px 2.5px 2px 2.5px" href="#" class="btn icon btn-danger" data-toggle="modal" data-target="#delete-modal-' . $row_table_body['id'] . '"><i class="far fa-trash-alt"></i></a>
                                 </div>
                         ',
-                        "form_dealer" => $form_dealer,
-                    );
-                    echo json_encode($table_dealers);
-                }
-
-            } else {
-                $table_dealers = array(
-                    "dealer_id" => "ERROR",
-                    "dealer_name" => "ERROR",
-                    "dealer_email" => "ERROR",
-                    "dealer_phone" => "ERROR",
-                    "dealer_address" => "ERROR",
-                    "dealer_dob" => "ERROR",
-                    "dealer_gender" => "ERROR",
-                    "edit" => "ERROR",
-                    "form_dealer" => "",
-
+                    "form_dealer" => $form_dealer,
                 );
                 echo json_encode($table_dealers);
             }
+
+        } else {
+            $table_dealers = array(
+                "dealer_id" => "ERROR",
+                "dealer_name" => "ERROR",
+                "dealer_email" => "ERROR",
+                "dealer_phone" => "ERROR",
+                "dealer_address" => "ERROR",
+                "dealer_dob" => "ERROR",
+                "dealer_gender" => "ERROR",
+                "edit" => "ERROR",
+                "form_dealer" => "",
+
+            );
+            echo json_encode($table_dealers);
         }
+    }
 
     if ($_POST["action"] == "delete") {
         $email_login = $_SESSION["email"];
@@ -362,4 +365,3 @@ if (isset($_POST["action"])) {
         }
     }
 }
-
