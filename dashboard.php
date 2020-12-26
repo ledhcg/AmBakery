@@ -144,7 +144,7 @@ $query_total_day6 = mysqli_query($connect, $sql_total_day6);
 $rows_total_day6 = mysqli_num_rows($query_total_day6);
 if ($rows_total_day6 > 0) {
     while ($row_total_day6 = mysqli_fetch_array($query_total_day6)) {
-        $total_day6 += $row_total_day5["order_total"];
+        $total_day6 += $row_total_day6["order_total"];
     }
 }
 
@@ -154,7 +154,7 @@ $query_total_day7 = mysqli_query($connect, $sql_total_day7);
 $rows_total_day7 = mysqli_num_rows($query_total_day7);
 if ($rows_total_day7 > 0) {
     while ($row_total_day7 = mysqli_fetch_array($query_total_day7)) {
-        $total_day7 += $row_total_day5["order_total"];
+        $total_day7 += $row_total_day7["order_total"];
     }
 }
 
